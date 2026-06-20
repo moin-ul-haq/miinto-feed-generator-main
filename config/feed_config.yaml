@@ -1,0 +1,30 @@
+# Miinto feed generator config.
+# Column set + ORDER must match reference/reference_feed.tsv exactly (45 columns).
+
+currencies: ["NOK", "DKK", "SEK", "EUR", "PLN", "GBP", "CNY"]   # no CHF
+
+languages:
+  # c:description_<lang> is emitted for ALL of these, each filled with the EN plain-text description.
+  # NB: quote the codes — unquoted NO is parsed as a YAML boolean!
+  description: ["DA", "SV", "NO", "NL", "EN", "DE", "PL", "FI", "ES", "FR", "IT"]
+  # only the EN title is emitted (c:title_EN); no other per-language titles
+  title: ["EN"]
+
+pricing:
+  # Per-currency rates live in config/vat_rates.csv and config/fx_rates.csv.
+  # NOTE: prices need NOT match the reference feed — the seeded rates are fine for the trial.
+  base_currency: "EUR"      # products_export.price_eur_net is EUR, net of VAT
+  rounding: 2               # round to 2 decimals, then embed as integer cents
+
+constants:
+  washing: '{"en_EN.utf8":"Wash with care. See product labels for further instructions"}'
+  material_template: 'Upper composition: {upper}. '   # -> {"en_EN.utf8":"Upper composition: <upper>. "}
+
+feed:
+  filename: "miinto_feed.tsv"   # FIXED filename (no date/time)
+  delimiter: "\t"
+  encoding: "utf-8"
+  line_ending: "\n"
+
+stock:
+  cap: false                # disabled — use raw stock for v1 (Koongo's "130 EUR cap" deferred)

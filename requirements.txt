@@ -1,0 +1,5 @@
+# Keep dependencies minimal. Add only what you actually use.
+PyYAML>=6.0
+pytest>=8.0
+flask>=3.0
+gunicorn>=22.0
