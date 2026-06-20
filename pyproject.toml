@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "miinto-feed"
+version = "0.1.0"
+description = "Miinto product-feed generator"
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML>=6.0",
+    "flask>=3.0",
+    "gunicorn>=22.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
